@@ -6,7 +6,7 @@
       </v-btn>
     </v-card-actions>
     <v-card-title>
-      <DialogSection icon="mdi-squqre" :color="event.color || 'bule'">
+      <DialogSection icon="mdi-square" :color="event.color || 'blue'">
         {{ event.name }}
       </DialogSection>
     </v-card-title>
