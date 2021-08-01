@@ -6,7 +6,7 @@
       </v-btn>
     </v-caard-actions>
     <v-card-text>
-      <DialogSection icon="mdi-square" :color="event.color || 'blue'">
+      <DialogSection icon="mdi-square" :color="event.color">
         <v-text-field v-model="name" label="タイトル"></v-text-field>
       </DialogSection>
       <DialogSection icon="mdi-click-outline">
