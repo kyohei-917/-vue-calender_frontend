@@ -11,7 +11,9 @@
       </DialogSection>
       <DialogSection icon="mdi-click-outline">
         <DateForm v-model="startDate" />
+        <TimeForm v-model="startTime" />
         <DateForm v-model="endDate" />
+        <TimeForm v-model="endTIme" />
       </DialogSection>
       <v-card-actios class="d-flex justify-end">
         <v-btn @click="submit">保存</v-btn>
@@ -24,24 +26,30 @@
 import { mapGetters, mapActions } from 'vuex';
 import DialogSection from './DialogSection';
 import DateForm from './DateForm';
+import TimeForm from './TimeForm';
 
 export default {
   name: 'EventFormDialog',
   components: {
     DialogSection,
     DateForm,
+    TimeForm,
   },
   data: () => ({
     name: '',
     startDate: null,
+    startTime: null,
     endDate: null,
+    endTime: null,
   }),
   computed: {
     ...mapGetters('events', ['event']),
   },
   created() {
     this.startDate = this.event.startDate;
+    this.startTime = this.event.startTime;
     this.endDate = this.event.endDate;
+    this.endTime = this.event.endTime;
   },
   methods: {
     ...mapActions('events', ['setEvent', 'setEditMode', 'createEvent']),
@@ -52,8 +60,8 @@ export default {
     submit() {
       const params = {
         name: this.name,
-        start: this.startDate,
-        end: this.endDate,
+        start: `${this.startDate} ${this.startTime || ''}`,
+        end: `${this.endDate} ${this.endTime || ''}`,
       };
       this.createEvent(params);
       this.closeDialog();
